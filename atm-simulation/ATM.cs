@@ -19,6 +19,34 @@ namespace atm_simulation
             this.bank = bank;
         }
 
+        public void ReadInputUser(string input)
+        {
+            string[] inputSplit = input.Split(" ");
+            switch (inputSplit[0])
+            {
+                case "login":
+                    LoginAccount(inputSplit[1]);
+                    break;
+                case "deposit":
+                    float amountToDeposit = float.Parse(inputSplit[1]);
+                    Deposit(amountToDeposit);
+                    break;
+                case "transfer":
+                    Transfer(inputSplit[1], float.Parse(inputSplit[2]));
+                    break;
+                case "withdraw":
+                    Withdraw(float.Parse(inputSplit[1]));
+                    break;
+                case "logout":
+                    LogoutAccount();
+                    break;
+                default:
+                    break;
+            }
+
+            Console.WriteLine();
+        }
+
         public void LoginAccount(string name)
         {
             // check if still logged in on another account

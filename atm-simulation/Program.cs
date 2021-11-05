@@ -6,36 +6,12 @@ namespace atm_simulation
     {
         static void Main(string[] args)
         {
-            Bank bank = new Bank();
-            ATM atm = new ATM(bank);
+            ATM atm = new ATM();
 
             while (true)
             {
                 string input = Console.ReadLine();
-                string[] inputSplit = input.Split(" ");
-                switch (inputSplit[0])
-                {
-                    case "login":
-                        atm.LoginAccount(inputSplit[1]);
-                        break;
-                    case "deposit":
-                        float amountToDeposit = float.Parse(inputSplit[1]);
-                        atm.Deposit(amountToDeposit);
-                        break;
-                    case "transfer":
-                        atm.Transfer(inputSplit[1], float.Parse(inputSplit[2]));
-                        break;
-                    case "withdraw":
-                        atm.Withdraw(float.Parse(inputSplit[1]));
-                        break;
-                    case "logout":
-                        atm.LogoutAccount();
-                        break;
-                    default:
-                        break;
-                }
-
-                Console.WriteLine();
+                atm.ReadInputUser(input);
             }
 
         }
