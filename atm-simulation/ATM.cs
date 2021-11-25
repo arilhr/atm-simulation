@@ -91,7 +91,7 @@ namespace atm_simulation
                 return;
             }
 
-            bank.Deposit(currentLoginAccount, amount);
+            bank.Deposit(currentLoginAccount.Name, amount);
         }
 
         public void Withdraw(float amount)
@@ -102,7 +102,7 @@ namespace atm_simulation
                 return;
             }
 
-            bank.Withdraw(currentLoginAccount, amount);
+            bank.Withdraw(currentLoginAccount.Name, amount);
         }
 
         public void Transfer(string targetName, float amount)
@@ -113,14 +113,7 @@ namespace atm_simulation
                 return;
             }
 
-            Account target = bank.GetAccount(targetName);
-            if (target == null)
-            {
-                Console.WriteLine($"Transfer Failed: Cant find account with name {targetName}");
-                return;
-            }
-
-            bank.Transfer(currentLoginAccount, target, amount);
+            bank.Transfer(currentLoginAccount.Name, targetName, amount);
         }
 
         public void LogoutAccount()

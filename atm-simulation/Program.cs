@@ -8,7 +8,8 @@ namespace atm_simulation
         {
             Console.Title = "ATM Simulation";
 
-            ATM atm = new ATM();
+            Bank bank = new Bank();
+            ATM atm = new ATM(bank);
 
             Console.WriteLine($"ATM SIMULATION");
             Console.WriteLine($"=========================================\n");

@@ -33,9 +33,16 @@ namespace atm_simulation
             accounts.Add(newAccount);
         }
 
-        public void Deposit(Account account, float amount)
+        public void Deposit(string accountName, float amount)
         {
+            Account account = GetAccount(accountName);
             float amountDeposit = amount;
+            
+            if (account == null)
+            {
+                Console.WriteLine($"Deposit Failed: Account not exist.");
+                return;
+            }
 
             // check if account has owed, pay the owed first
             if (account.IsAccountOwed())
@@ -51,8 +58,16 @@ namespace atm_simulation
             account.ShowAccountOwedList();
         }
 
-        public void Withdraw(Account account, float amount)
+        public void Withdraw(string accountName, float amount)
         {
+            Account account = GetAccount(accountName);
+
+            if (account == null)
+            {
+                Console.WriteLine($"Withdraw Failed: Account not exist.");
+                return;
+            }
+
             // check if balance less than request amount withdraw, withdraw failed
             if (account.Balance - amount < 0)
             {
@@ -65,8 +80,18 @@ namespace atm_simulation
             Console.WriteLine($"You withdraw ${amount} from your balance.");
         }
 
-        public void Transfer(Account account, Account targetAccount, float amount)
+        public void Transfer(string accountName, string targetName, float amount)
         {
+            Account account = GetAccount(accountName);
+            Account targetAccount = GetAccount(targetName);
+
+            // check if target account is exist
+            if (targetAccount == null)
+            {
+                Console.WriteLine($"Transfer Failed: Cant find account with name {targetName}");
+                return;
+            }
+
             // if account has owed to target account, pay the owed list
             if (account.IsAccountOwedToTargetAccount(targetAccount))
             {
