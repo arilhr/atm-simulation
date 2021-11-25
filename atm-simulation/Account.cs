@@ -62,6 +62,7 @@ namespace atm_simulation
             }
         }
 
+        // get total account owed
         public float GetTotalOwedToAccount(Account acc)
         {
             if (!accountOwed.ContainsKey(acc)) return 0;
@@ -69,6 +70,7 @@ namespace atm_simulation
             return accountOwed[acc];
         }
 
+        // show all owed account list
         public void ShowAccountOwedList()
         {
             for (int i = 0; i < accountOwed.Count; i++)
@@ -77,6 +79,7 @@ namespace atm_simulation
             }
         }
 
+        // pay owed on specific account
         public void PayOwedSpecificAccount(Account targetAccount, float amount)
         {
             if (!accountOwed.ContainsKey(targetAccount)) return;
@@ -88,6 +91,7 @@ namespace atm_simulation
                 accountOwed.Remove(targetAccount);
         }
 
+        // pay all account owed on list
         public float PayAccountOwed(float amount)
         {
             float amountLeft = amount;

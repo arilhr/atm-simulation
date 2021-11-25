@@ -145,7 +145,7 @@ namespace tests
         }
 
         [Fact]
-        public void TransferWithOwedTest()
+        public void TransferOwedTest()
         {
             Bank bank = new Bank();
             ATM atm = new ATM(bank);
