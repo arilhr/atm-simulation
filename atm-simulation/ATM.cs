@@ -25,17 +25,29 @@ namespace atm_simulation
             switch (inputSplit[0])
             {
                 case "login":
-                    LoginAccount(inputSplit[1]);
+                    if (inputSplit.Length == 2)
+                    {
+                        LoginAccount(inputSplit[1]);
+                    }
                     break;
                 case "deposit":
-                    float amountToDeposit = float.Parse(inputSplit[1]);
-                    Deposit(amountToDeposit);
+                    if (inputSplit.Length == 2)
+                    {
+                        float amountToDeposit = float.Parse(inputSplit[1]);
+                        Deposit(amountToDeposit);
+                    }
                     break;
                 case "transfer":
-                    Transfer(inputSplit[1], float.Parse(inputSplit[2]));
+                    if (inputSplit.Length == 3)
+                    {
+                        Transfer(inputSplit[1], float.Parse(inputSplit[2]));
+                    }
                     break;
                 case "withdraw":
-                    Withdraw(float.Parse(inputSplit[1]));
+                    if (inputSplit.Length == 2)
+                    {
+                        Withdraw(float.Parse(inputSplit[1]));
+                    }
                     break;
                 case "logout":
                     LogoutAccount();

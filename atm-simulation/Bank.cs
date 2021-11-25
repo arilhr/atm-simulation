@@ -67,6 +67,12 @@ namespace atm_simulation
 
         public void Transfer(Account account, Account targetAccount, float amount)
         {
+            // if account has owed to target account, pay the owed list
+            if (account.IsAccountOwedToTargetAccount(targetAccount))
+            {
+                account.PayOwedSpecificAccount(targetAccount, account.GetTotalOwedToAccount(targetAccount));
+            }
+
             // if not enough balance, transfer all balance on this account, and add owed with target account
             // else, just transfer normally
             if (account.Balance - amount < 0)

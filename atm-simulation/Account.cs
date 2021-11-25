@@ -24,10 +24,6 @@ namespace atm_simulation
         public string Name
         {
             get => name;
-            set
-            {
-                name = value;
-            }
         }
 
         #endregion
@@ -44,6 +40,16 @@ namespace atm_simulation
         #endregion
 
         #region Owed List Function
+        public bool IsAccountOwed()
+        {
+            return accountOwed.Count > 0;
+        }
+
+        public bool IsAccountOwedToTargetAccount(Account targetAccount)
+        {
+            return accountOwed.ContainsKey(targetAccount);
+        }
+
         public void AddOwedList(Account acc, float amount)
         {
             if (accountOwed.ContainsKey(acc))
@@ -63,17 +69,23 @@ namespace atm_simulation
             return accountOwed[acc];
         }
 
-        public bool IsAccountOwed()
-        {
-            return accountOwed.Count > 0;
-        }
-
         public void ShowAccountOwedList()
         {
             for (int i = 0; i < accountOwed.Count; i++)
             {
                 Console.WriteLine($"Owed ${accountOwed.ElementAt(i).Value} to {accountOwed.ElementAt(0).Key.name}");
             }
+        }
+
+        public void PayOwedSpecificAccount(Account targetAccount, float amount)
+        {
+            if (!accountOwed.ContainsKey(targetAccount)) return;
+
+            accountOwed[targetAccount] -= amount;
+            targetAccount.balance += amount;
+
+            if (accountOwed[targetAccount] <= 0)
+                accountOwed.Remove(targetAccount);
         }
 
         public float PayAccountOwed(float amount)
