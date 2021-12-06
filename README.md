@@ -30,7 +30,7 @@ This is the input for user to use the program:
   ```
 * To logout your current logined account
 ```sh
-  logout
+  logout 
   ```
 
 ## Tests
