@@ -13,24 +13,24 @@ a program that simulates the interaction between a user and a bank in ATM.
 This is the input for user to use the program:
 
 * To login bank account
-```sh
+```
   login [account_name]
   ```
 * To deposit on logined account
-```sh
+```
   deposit [amount]
   ```
 * To transfer balance to another account
-```sh
+```
   transfer [target_account_name] [amount]
   ```
 * To withdraw some balance
-```sh
+```
   withdraw [amount]
   ```
 * To logout your current logined account
-```sh
-  logout 
+```
+  logout
   ```
 
 ## Tests
